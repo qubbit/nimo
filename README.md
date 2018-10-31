@@ -1,5 +1,8 @@
-## How to build
+# Nimo
 
+A ruby gem to expose some native OS functions
+
+## How to build
 ```
 cd ext/nimo
 ruby extconf.rb
