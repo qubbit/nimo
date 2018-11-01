@@ -74,7 +74,7 @@ OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
 CSRCFLAG = $(empty)
 
-RUBY_EXTCONF_H = 
+RUBY_EXTCONF_H = extconf.h
 cflags   = $(optflags) $(debugflags) $(warnflags)
 cxxflags = $(optflags) $(debugflags) $(warnflags)
 optflags = -O3 -fno-fast-math
@@ -84,7 +84,7 @@ CCDLFLAGS = -fno-common
 CFLAGS   = $(CCDLFLAGS) $(cflags)  -pipe $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_MALLOC -DHAVE_FREE -DHAVE_FRAMEWORK_COCOA -I/Users/gadhikari/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
+CPPFLAGS = -DRUBY_EXTCONF_H=\"$(RUBY_EXTCONF_H)\" -I/Users/gadhikari/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
 ldflags  = -L. -L/Users/gadhikari/.rbenv/versions/2.4.2/lib  -fstack-protector -L/usr/local/lib -ObjC
 dldflags = -L/Users/gadhikari/.rbenv/versions/2.4.2/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
@@ -107,7 +107,7 @@ sitearch = $(arch)
 ruby_version = 2.4.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
 RUBY = $(ruby)
-ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/backward.h $(hdrdir)/ruby/ruby.h $(hdrdir)/ruby/defines.h $(hdrdir)/ruby/missing.h $(hdrdir)/ruby/intern.h $(hdrdir)/ruby/st.h $(hdrdir)/ruby/subst.h $(arch_hdrdir)/ruby/config.h
+ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/backward.h $(hdrdir)/ruby/ruby.h $(hdrdir)/ruby/defines.h $(hdrdir)/ruby/missing.h $(hdrdir)/ruby/intern.h $(hdrdir)/ruby/st.h $(hdrdir)/ruby/subst.h $(arch_hdrdir)/ruby/config.h $(RUBY_EXTCONF_H)
 
 RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
@@ -138,7 +138,7 @@ LIBS =   -lpthread -lgmp -ldl -lobjc  -framework Cocoa
 ORIG_SRCS = nimo.c test1.cpp
 SRCS = $(ORIG_SRCS) 
 OBJS = nimo.o test1.o
-HDRS = 
+HDRS = $(srcdir)/extconf.h
 LOCAL_HDRS = 
 TARGET = nimo
 TARGET_NAME = nimo
