@@ -1,5 +1,7 @@
-require 'nimo/nimo'
+$LOAD_PATH << File.join(File.dirname(__FILE__), "../ext")
+
 require 'test/unit'
+require 'nimo/nimo'
 
 module Nimo
   class TestMacintosh < Test::Unit::TestCase
